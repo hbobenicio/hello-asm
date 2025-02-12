@@ -1,7 +1,7 @@
 bits 64
 
-%include "linux.asm"
-%include "callconv.asm"
+%include "linux.nasm"
+%include "callconv.nasm"
 
 section .text
 

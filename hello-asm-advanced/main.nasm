@@ -1,7 +1,7 @@
 bits 64
 
-%include "linux.asm"
-%include "callconv.asm"
+%include "linux.nasm"
+%include "callconv.nasm"
 
 extern io_print_buffer
 
@@ -52,7 +52,6 @@ _prompt_read:
     ; mov rdx, IOBUF_SIZE
     syscall
 
-_debug:
     ; converts the ascii count into integer
     mov r15, QWORD [rsp+8]
     sub r15, '0'
@@ -62,8 +61,6 @@ loop_start:
     cmp r15, 0
     jz loop_end
 
-    ; io_print_buffer(hello_world, hello_world_len)
-    ; NOTE save rax because we use it as our loop counter (and it's caller-save)
     mov rdi, hello_world
     mov rsi, hello_world_len
     call io_print_buffer

@@ -1,13 +1,13 @@
 all: hello-asm test
 
-main.o: main.asm
-	nasm -f elf64 -Wall -g -O0 main.asm
+main.o: main.nasm
+	nasm -f elf64 -Wall -g -O0 main.nasm
 
 hello-asm: main.o io.o
 	ld -g -O0 -o hello-asm io.o main.o
 
-io.o: io.asm linux.asm callconv.asm
-	nasm -f elf64 -Wall -g -O0 io.asm
+io.o: io.nasm linux.nasm callconv.nasm
+	nasm -f elf64 -Wall -g -O0 io.nasm
 
 test.o: test.c io.o
 	gcc -Wall -Wextra -c test.c
